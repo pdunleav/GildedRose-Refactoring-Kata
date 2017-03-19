@@ -81,8 +81,7 @@ describe GildedRose do
       let(:gr) { GildedRose.new([item]) }
 
       it "increases in quality by 2" do
-        gr.update_quality
-        expect(item.quality).to eq(12)
+        expect{gr.update_quality}.to change{item.quality}.by(2)
       end
     end
 
@@ -91,8 +90,7 @@ describe GildedRose do
       let(:gr) { GildedRose.new([item]) }
 
       it "increases in quality by 3" do
-        gr.update_quality
-        expect(item.quality).to eq(13)
+        expect{gr.update_quality}.to change{item.quality}.by(3)
       end
     end
   end
