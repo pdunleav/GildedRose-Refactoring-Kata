@@ -3,9 +3,10 @@ require File.join(File.dirname(__FILE__), 'gilded_rose')
 describe GildedRose do
 
   describe "AgedBrie" do
+    let(:item) { Item.new("Aged Brie", 10, 10) }
+    let(:gr) { GildedRose.new([item]) }
+
     it "increases in quality as time passes" do
-      item = Item.new("Aged Brie", 10, 10)
-      gr = GildedRose.new([item])
       gr.update_quality
       expect(item.quality).to be(11)
     end
