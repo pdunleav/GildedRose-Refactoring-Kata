@@ -24,22 +24,45 @@ describe GildedRose do
     it "does not decrease in quality" do
       10.times do
         gr.update_quality
-        expect(item.quality).to be(80)
+        expect(item.quality).to eq(80)
       end
     end
   end
 
   describe "BackstagePasses" do
-    it "increases in quality as time passes"
+    let(:item) { Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 20) }
+    let(:gr) { GildedRose.new([item]) }
 
-    it "has no quality after the concert"
+    it "increases in quality as time passes" do
+      gr.update_quality
+      expect(item.quality).to be > 10
+    end
+
+    it "has no quality after the concert" do
+      50.times do
+        gr.update_quality
+        expect(item.quality).to eq(0)
+      end
+    end
 
     context "when there are 10 days or less until the concert" do
-      it "increases in quality by 2"
+      let(:item) { Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 10) }
+      let(:gr) { GildedRose.new([item]) }
+
+      it "increases in quality by 2" do
+        gr.update_quality
+        expect(item.quality).to eq(12)
+      end
     end
 
     context "when there are 5 days or less until the concert" do
-      it "increases in quality by 3"
+      let(:item) { Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 10) }
+      let(:gr) { GildedRose.new([item]) }
+
+      it "increases in quality by 3" do
+        gr.update_quality
+        expect(item.quality).to eq(13)
+      end
     end
   end
 end
