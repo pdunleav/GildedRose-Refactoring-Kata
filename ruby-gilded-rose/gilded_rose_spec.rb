@@ -12,16 +12,20 @@ describe GildedRose do
   end
 
   describe "Sulfuras" do
+    let(:item) { Item.new("Sulfuras, Hand of Ragnaros", 10, 80) }
+    let(:gr) { GildedRose.new([item]) }
+
     it "never has to be sold" do
-      item = Item.new("Sulfuras, Hand of Ragnaros", 10, 80)
-      gr = GildedRose.new([item])
       gr.update_quality
       expect(item.sell_in).to be(10)
     end
 
-    it "does not decrease in quality"
-
-    it "always has a quality of 80"
+    it "does not decrease in quality" do
+      10.times do
+        gr.update_quality
+        expect(item.quality).to be(80)
+      end
+    end
   end
 
   describe "BackstagePasses" do
