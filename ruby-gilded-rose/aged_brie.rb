@@ -1,8 +1,6 @@
 class AgedBrie < RegularItem
 
-  def increase_quality
-    if @quality < 50
-      @quality += 1
-    end
+  def update_quality
+    @quality += 1 unless reached_maximum_quality?
   end
 end
