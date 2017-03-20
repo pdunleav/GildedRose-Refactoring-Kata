@@ -2,7 +2,7 @@ require_relative 'regular_item'
 
 class Sulfuras < RegularItem
 
-  def update_quality
+  def update_item_quality
     @quality
   end
 

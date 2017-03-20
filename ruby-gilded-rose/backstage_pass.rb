@@ -2,7 +2,7 @@ require_relative 'regular_item'
 
 class BackstagePass < RegularItem
 
-  def update_quality
+  def update_item_quality
     if @sell_in < 6 && not_passed_sell_by?
       3.times do
         @quality += 1 unless maximum_quality_reached?
