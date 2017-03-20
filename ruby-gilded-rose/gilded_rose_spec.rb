@@ -3,12 +3,11 @@ require File.join(File.dirname(__FILE__), 'gilded_rose')
 describe GildedRose do
 
   describe "Regular Item" do
-    let(:item) { Item.new("Normal Item", 8, 20) }
+    let(:item) { RegularItem.new("Regular Item", 8, 20) }
     let(:gr) { GildedRose.new([item]) }
 
     it "decreases in quality as time passes" do
-      gr.update_quality
-      expect(item.quality).to eq(19)
+      expect{gr.update_quality}.to change{item.quality}.by(-1)
     end
 
     it "never has a quality less than 0" do
@@ -27,7 +26,7 @@ describe GildedRose do
   end
 
   describe "Conjured Item" do
-    let(:item) { Item.new("Conjured", 8, 20) }
+    let(:item) { Conjured.new("Conjured", 8, 20) }
     let(:gr) { GildedRose.new([item]) }
 
     describe "decreases in quality twice as fast as regular items" do
@@ -52,7 +51,7 @@ describe GildedRose do
   end
 
   describe "AgedBrie" do
-    let(:item) { Item.new("Aged Brie", 10, 10) }
+    let(:item) { AgedBrie.new("Aged Brie", 10, 10) }
     let(:gr) { GildedRose.new([item]) }
 
     it "increases in quality as time passes" do
@@ -68,7 +67,7 @@ describe GildedRose do
   end
 
   describe "Sulfuras" do
-    let(:item) { Item.new("Sulfuras, Hand of Ragnaros", 10, 80) }
+    let(:item) { Sulfuras.new("Sulfuras, Hand of Ragnaros", 10, 80) }
     let(:gr) { GildedRose.new([item]) }
 
     it "never has to be sold" do
@@ -84,7 +83,7 @@ describe GildedRose do
   end
 
   describe "BackstagePasses" do
-    let(:item) { Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 20) }
+    let(:item) { BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 15, 20) }
     let(:gr) { GildedRose.new([item]) }
 
     it "increases in quality as time passes" do
@@ -99,7 +98,7 @@ describe GildedRose do
     end
 
     context "when there are 10 days or less until the concert" do
-      let(:item) { Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 10) }
+      let(:item) { BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 10, 10) }
       let(:gr) { GildedRose.new([item]) }
 
       it "increases in quality by 2" do
@@ -108,7 +107,7 @@ describe GildedRose do
     end
 
     context "when there are 5 days or less until the concert" do
-      let(:item) { Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 10) }
+      let(:item) { BackstagePass.new("Backstage passes to a TAFKAL80ETC concert", 5, 10) }
       let(:gr) { GildedRose.new([item]) }
 
       it "increases in quality by 3" do
