@@ -1,3 +1,5 @@
+require_relative 'regular_item'
+
 class Sulfuras < RegularItem
 
   def update_quality

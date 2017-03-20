@@ -1,3 +1,5 @@
+require_relative 'regular_item'
+
 class BackstagePass < RegularItem
 
   def update_quality
@@ -11,5 +13,6 @@ class BackstagePass < RegularItem
       end
     else
       @quality += 1 unless maximum_quality_reached?
+    end
   end
 end

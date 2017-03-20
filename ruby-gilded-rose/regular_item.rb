@@ -1,3 +1,5 @@
+require_relative 'item'
+
 class RegularItem < Item
 
   def update
