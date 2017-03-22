@@ -1,3 +1,5 @@
+require_relative '../aged_brie'
+
 class GildedRose
 
   def initialize(items)
@@ -8,7 +10,7 @@ class GildedRose
     @items.each do |item|
       case item.name
       when "Aged Brie"
-        update_aged_brie(item)
+        AgedBrie.new(item).update
       when "Backstage passes to a TAFKAL80ETC concert"
         update_backstage_passes(item)
       when "Sulfuras, Hand of Ragnaros"
@@ -32,12 +34,6 @@ class GildedRose
 
   def passed_sell_by?(item)
     item.sell_in < 0
-  end
-
-  def update_aged_brie(item)
-    item.sell_in -= 1
-    increase_quality_of(item)
-    increase_quality_of(item) if passed_sell_by?(item)
   end
 
   def update_backstage_passes(item)
