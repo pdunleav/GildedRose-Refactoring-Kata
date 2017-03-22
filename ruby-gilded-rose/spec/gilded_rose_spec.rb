@@ -33,7 +33,6 @@ describe GildedRose do
 
     describe "decreases in quality twice as fast as regular items" do
       it "decreases in quality as time passes" do
-        pending
         expect{gr.update_quality}.to change{item.quality}.by(-2)
     end
 
@@ -46,7 +45,6 @@ describe GildedRose do
 
     context "when the sell by date has passed" do
       it "decreases in quality twice as fast" do
-        pending
         item.sell_in = 0
         expect{gr.update_quality}.to change{item.quality}.by(-4)
       end
