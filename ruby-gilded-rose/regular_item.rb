@@ -1,28 +1,24 @@
-require_relative 'item'
+class RegularItem
 
-class RegularItem < Item
+  attr_accessor :item
 
-  def update_item_quality
-    if @quality > 0 && passed_sell_by?
-      @quality -= 2
-    elsif @quality > 0
-      @quality -= 1
+  def initialize(item)
+    @item = item
+  end
+
+  def update
+    item.sell_in -= 1
+    decrease_quality_of(item)
+    decrease_quality_of(item) if passed_sell_by?(item)
+  end
+
+  def decrease_quality_of(item)
+    if item.quality > 0
+      item.quality -= 1
     end
   end
 
-  def decrease_sell_in
-    @sell_in -= 1
-  end
-
-  def passed_sell_by?
-    @sell_in < 0
-  end
-
-  def not_passed_sell_by?
-    @sell_in >= 0
-  end
-
-  def maximum_quality_reached?
-    @quality == 50
+  def passed_sell_by?(item)
+    item.sell_in < 0
   end
 end

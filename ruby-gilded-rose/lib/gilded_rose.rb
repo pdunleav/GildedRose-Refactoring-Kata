@@ -1,6 +1,7 @@
 require_relative '../aged_brie'
 require_relative '../backstage_pass'
 require_relative '../sulfuras'
+require_relative '../regular_item'
 
 class GildedRose
 
@@ -18,7 +19,7 @@ class GildedRose
       when "Sulfuras, Hand of Ragnaros"
         Sulfuras.new(item).update
       else
-        update_regular_item(item)
+        RegularItem.new(item).update
       end
     end
   end
@@ -37,12 +38,6 @@ class GildedRose
 
   def passed_sell_by?(item)
     item.sell_in < 0
-  end
-
-  def update_regular_item(item)
-    item.sell_in -= 1
-    decrease_quality_of(item)
-    decrease_quality_of(item) if passed_sell_by?(item)
   end
 end
 
