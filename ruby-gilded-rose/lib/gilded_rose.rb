@@ -6,15 +6,16 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      unless item.name == "Sulfuras, Hand of Ragnaros"
-        item.sell_in -= 1
-      end
       case item.name
       when "Aged Brie"
+        item.sell_in -= 1
         update_aged_brie(item)
       when "Backstage passes to a TAFKAL80ETC concert"
+        item.sell_in -= 1
         update_backstage_passes(item)
+      when "Sulfuras, Hand of Ragnaros"
       else
+        item.sell_in -= 1
         update_regular_item(item)
       end
     end
@@ -22,7 +23,7 @@ class GildedRose
 
   def decrease_quality_of(item)
     if item.quality > 0
-      item.quality -= 1 unless item.name == "Sulfuras, Hand of Ragnaros"
+      item.quality -= 1
     end
   end
 
