@@ -1,14 +1,11 @@
-require_relative 'regular_item'
+class Sulfuras
 
-class Sulfuras < RegularItem
+  attr_accessor :item
 
-  def update_item_quality
-    @quality
+  def initialize(item)
+    @item = item
   end
 
-  def decrease_sell_in
-    @sell_in
+  def update
   end
-
-
 end

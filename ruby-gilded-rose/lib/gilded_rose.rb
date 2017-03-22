@@ -1,5 +1,6 @@
 require_relative '../aged_brie'
 require_relative '../backstage_pass'
+require_relative '../sulfuras'
 
 class GildedRose
 
@@ -15,6 +16,7 @@ class GildedRose
       when "Backstage passes to a TAFKAL80ETC concert"
         BackstagePass.new(item).update
       when "Sulfuras, Hand of Ragnaros"
+        Sulfuras.new(item).update
       else
         update_regular_item(item)
       end
