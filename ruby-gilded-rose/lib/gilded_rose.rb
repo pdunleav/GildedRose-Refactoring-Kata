@@ -23,21 +23,5 @@ class GildedRose
       end
     end
   end
-
-  def decrease_quality_of(item)
-    if item.quality > 0
-      item.quality -= 1
-    end
-  end
-
-  def increase_quality_of(item)
-    if item.quality < 50
-      item.quality += 1
-    end
-  end
-
-  def passed_sell_by?(item)
-    item.sell_in < 0
-  end
 end
 
