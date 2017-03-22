@@ -11,20 +11,11 @@ class GildedRose
       end
       case item.name
       when "Aged Brie"
-        increase_quality_of(item)
-        increase_quality_of(item) if passed_sell_by?(item)
+        update_aged_brie(item)
       when "Backstage passes to a TAFKAL80ETC concert"
-        increase_quality_of(item)
-        if item.sell_in < 11
-          increase_quality_of(item)
-        end
-        if item.sell_in < 6
-          increase_quality_of(item)
-        end
-        item.quality = 0 if passed_sell_by?(item)
+        update_backstage_passes(item)
       else
-        decrease_quality_of(item)
-        decrease_quality_of(item) if passed_sell_by?(item)
+        update_regular_item(item)
       end
     end
   end
@@ -43,6 +34,27 @@ class GildedRose
 
   def passed_sell_by?(item)
     item.sell_in < 0
+  end
+
+  def update_aged_brie(item)
+    increase_quality_of(item)
+    increase_quality_of(item) if passed_sell_by?(item)
+  end
+
+  def update_backstage_passes(item)
+    increase_quality_of(item)
+    if item.sell_in < 11
+      increase_quality_of(item)
+    end
+    if item.sell_in < 6
+      increase_quality_of(item)
+    end
+    item.quality = 0 if passed_sell_by?(item)
+  end
+
+  def update_regular_item(item)
+    decrease_quality_of(item)
+    decrease_quality_of(item) if passed_sell_by?(item)
   end
 end
 
